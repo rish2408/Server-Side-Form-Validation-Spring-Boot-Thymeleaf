@@ -12,6 +12,7 @@ public class Form {
 
 	@NotBlank(message = "Password can not be empty !!")
 	@Size(min = 3, max = 15, message = "Password must be between 3 - 15 characters !!")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{3,15}$", message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character.")
 	private String password;
 
 	@AssertTrue(message = "You must agree terms and conditions first !!")
