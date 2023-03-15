@@ -1,12 +1,17 @@
 package com.validation.controller;
 
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.validation.entity.Form;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class MyController {
@@ -19,7 +24,13 @@ public class MyController {
 	}
 	
 	@PostMapping("/success")
-	public String successForm(@ModelAttribute("formData") Form formData) {
+	public String successForm(@Valid @ModelAttribute("formData") Form formData, BindingResult result) {
+		
+		if(result.hasErrors())
+		{
+			System.out.println(result);
+			return "form";
+		}
 		
 		System.out.println(formData);
 		return "success";
