@@ -33,7 +33,9 @@
 							th:value="${formData.password}" class="form-control"
 							th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
 							id="exampleInputPassword1">
-							
+						<button class="btn btn-outline-secondary mt-1" type="button" id="password-toggle">
+							<span id="password-toggle-text">Show</span>
+						</button>
 						<div th:each="e : ${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
 						</div>
 					</div>
@@ -52,5 +54,21 @@
 			</div>
 		</div>
 	</div>
+	
+<script>
+	const passwordInput = document.querySelector('input[name="password"]');
+	const passwordToggle = document.querySelector('#password-toggle');
+	const passwordToggleText = document.querySelector('#password-toggle-text');
+
+	passwordToggle.addEventListener('click', function() {
+		if (passwordInput.type === 'password') {
+			passwordInput.type = 'text';
+			passwordToggleText.textContent = 'Hide';
+		} else {
+			passwordInput.type = 'password';
+			passwordToggleText.textContent = 'Show';
+		}
+	});
+</script>
 </body>
 </html>
